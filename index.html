@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title></title>
+    <link rel='stylesheet' href='css/pannellum.css'/>
+    
+    <link rel='stylesheet' href='https://js.arcgis.com/3.18/esri/css/esri.css'>
+    <link rel='stylesheet' href='https://js.arcgis.com/3.18/esri/themes/calcite/dijit/calcite.css'>
+    <link rel='stylesheet' href='https://js.arcgis.com/3.18/esri/themes/calcite/esri/esri.css'>
+    <link rel='stylesheet' href='css/styles.css'>
+  </head>
+
+  <body class='calcite'>
+    <div id='header'>
+      <img src='images/groundvu-tweaked-cropped-resized.png'>
+      <div id='title'>Panoramic Imagery Viewer</div>
+      <button id='sign-out'>Sign Out</button>
+    </div>
+
+    <div id='map'></div>
+
+    <div id='show-map'>
+      Show map <i class='esri-icon-up-arrow'></i>
+    </div>
+
+    <div id='tools-wrapper' class='esriSimpleSlider esriSimpleSliderVertical esriSimpleSliderTR'>
+      <div id='hide-map' class='esri-icon-down-arrow'></div>
+      <div id='layers-show' class='esri-icon-layers'></div>
+      <div id='measure-show' class='measure-icon'></div>
+    </div>
+
+    <div id='layers-wrapper'>
+      <div id='layers-title'>
+        Map Layers
+        <div id='layers-close' class='esri-icon-close'></div>
+      </div>
+      <div id='layers'></div>
+    </div>
+
+    <div id='measure-wrapper'>
+      <div id='measure-title'>
+        Measurement Tools
+        <div id='measure-close' class='esri-icon-close'></div>
+      </div>
+      <div id='measure'></div>
+    </div>
+    
+    <div id='imagery'>
+      <!--div id='instruction'>
+        Click a point on the map to load panoramic imagery.
+      </div-->
+    </div>
+
+    <div id='map-loading'>
+      <svg width="50" height="50">
+        <g transform="translate(25,25) rotate(-45)">
+          <path class="move" d="M0,-25A25,25 0 0,1 25,0L20,0A20,20 0 0,0 0,-20Z" style="fill: rgb(75, 173, 234);"></path>
+        </g>
+      </svg>
+    </div>
+    
+    <script src="js/lib/libpannellum.js"></script>
+    <script src="js/lib/RequestAnimationFrame.js"></script>
+    <script src="js/lib/pannellum.js"></script>
+
+    <script src='js/indoorvu/moduleConfig.js'></script>
+    <script src='https://js.arcgis.com/3.18/init.js'></script>
+    <script src='js/indoorvu/run.js'></script>
+  </body>
+</html>

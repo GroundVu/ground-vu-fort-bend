@@ -1,0 +1,236 @@
+* {
+  box-sizing: border-box;
+}
+html, body, #map, #imagery, #wrapper {
+  background: #fff;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#header {
+  background: #fff;
+  color: #4c4c4c;
+  height: 50px;
+  padding: 0 1em;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 1px 8px rgba(0,0,0,.25);
+}
+#header img {
+  max-width: 25%;
+}
+#header #title {
+  display: inline-block;
+  font-size: 24px;
+  vertical-align: top;
+  margin: 0.25em 0 0 1em;
+  max-width: 50%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#map, #layers-wrapper, #measure-wrapper {
+  border-bottom: 1px solid #4c4c4c;
+  display: inline-block;
+  height: calc(50% - 50px);
+  /* get rid of space between map and layer list and imagery pane */
+  /* http://stackoverflow.com/a/10612455/1934 */
+  vertical-align: top; 
+}
+#map {
+  bottom: 0;
+  border: 0;
+  position: absolute;
+  height: 50%;
+  right: 0;
+  width: 33%;
+  z-index: 100;
+}
+#layers-wrapper, #measure-wrapper {
+  background: #fff;
+  /*box-shadow: -2px 0px 10px rgba(0,0,0,0.1);*/
+  box-shadow: 0 1px 8px rgba(0,0,0,.25);
+  display: none;
+  /*float: right;*/
+  height: calc(50% - 50px);
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  width: 33%;
+  z-index: 100;
+}
+#layers-wrapper #layers-title,
+#measure-wrapper #measure-title,
+#layers-wrapper #layers-title #layers-close,
+#measure-wrapper #measure-title #layers-close {
+  display: inline-block;
+  font-weight: bold;
+}
+#layers-wrapper #layers-title,
+#measure-wrapper #measure-title {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 10px;
+  width: 100%;
+}
+#layers-wrapper #layers-title #layers-close,
+#measure-wrapper #measure-title #measure-close {
+  cursor: pointer;
+  float: right;
+  margin: 0px 6px;
+}
+.measure-icon {
+  background: url('../images/measure-icon.svg');
+}
+#tools-wrapper {
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0,0,0,.25);
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 2.66667;
+  position: absolute;
+  right: 15px;
+  text-align: center;
+  top: calc(50% + 15px);
+  transition: all .25s ease;
+  z-index: 101;
+  width: 32px;
+}
+#tools-wrapper div {
+  border-bottom: 1px solid #efefef;
+}
+#tools-wrapper div:last-child {
+  border-bottom: none;
+}
+#layers-show:hover,
+#measure-show:hover {
+  background-color: #e2f1fb;
+}
+#imagery {
+  border: 0;
+  clear: both;
+  height: calc(100% - 50px);
+  position: relative;
+  width: 100%;
+}
+#instruction {
+  font-size: 3.5em;
+  left: 50%;
+  margin-left: -25%;
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  width: 50%;
+  z-index: 100;
+  text-shadow: #a9a9a9 0px 0px 9px;
+  color: #4badea;
+}
+#sign-out {
+  float: right;
+  margin: 1em 0;
+  padding: 5px 10px;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #4c4c4c;
+  background-color: #fff;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  border-color: #757676;
+  line-height: normal;
+  vertical-align: middle;
+  text-align: center;
+  display: none;
+}
+#sign-out:hover {
+  background: #e2f1fb;
+  transition: all 0.25s ease;
+}
+
+#show-map {
+  background: #fff;
+  bottom: 0;
+  cursor: pointer;
+  height: auto;
+  padding: 0.5em;
+  position: absolute;
+  right: 0;
+  width: auto;
+  z-index: 4;
+}
+
+/* override box shadow on zoom buttons */
+.calcite .esriSimpleSlider {
+  box-shadow: 0 1px 8px rgba(0,0,0,.25);
+}
+
+/* resets for some esri layer list elements */
+.esriLayerList .esriContainer {
+  background: #fff;
+  border-bottom: none;
+  border-top: none;
+  color: #4c4c4c;
+}
+.esriLayerList .esriTitleContainer {
+  border-top: none;
+}
+.esriLayerList .esriToggleButton {
+  margin: 0 1em 0 0;
+  padding: 8px 0 0 0;
+}
+.calcite .esriLegendService {
+  margin: 0;
+  padding: 0;
+}
+.esriLegendLayerLabel {
+  padding-top: 0;
+}
+
+/* resets for some esri measurement widget elements */
+.esriMeasurement .esriButtonChecked .dijitButtonNode,
+.esriMeasurement .esriButtonHover .dijitButtonNode {
+  background-image: none;
+}
+.calcite .esriMeasurement {
+  height: auto;
+  width: auto;
+}
+.calcite .esriMeasurement .esriMeasurementResultLabel {
+  padding: 10px 0;
+}
+.calcite .esriMeasurement .esriMeasurementSeparator,
+.calcite .esriMeasurement .esriMeasurementResultLabel {
+  display: none;
+}
+.calcite .esriMeasurement .esriMeasurementButtonContainer {
+  border-bottom: 1px solid #4c4c4c;
+  padding: 0 20% 12px
+}
+.esriMeasurement .esriButton .dijitButtonNode {
+  height: 40px;
+}
+
+/* map loading icon */
+#map-loading {
+  position: absolute;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -25px;
+  top: calc(50% - 50px);
+  z-index: 100;
+}
+.move {
+  animation: spinning 1.5s ease-in-out infinite;
+}
+@keyframes spinning {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}
