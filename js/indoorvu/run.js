@@ -4,6 +4,7 @@ require(['indoorvu/app'], function(App, config) {
   var options = {
     instructions: document.getElementById('instruction'),
     loading: document.getElementById('map-loading'),
+    search: document.getElementById('search'),
     signOut: document.getElementById('sign-out'),
     viewerContainer: document.getElementById('imagery'),
     layersOptions: {

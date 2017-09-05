@@ -3,6 +3,7 @@ define([
   'esri/arcgis/OAuthInfo', 'esri/IdentityManager',
   'esri/urlUtils', 'esri/request', 'esri/config', 
   'esri/tasks/GeometryService',
+  'esri/dijit/Search',
 
   'dojo/_base/declare', 'dojo/_base/lang', 'dojo/on',
 
@@ -13,6 +14,7 @@ define([
   OAuthInfo, esriId,
   urlUtils, esriRequest, esriConfig, 
   GeometryService,
+  Search,
 
   declare, lang, on,
 
@@ -55,6 +57,7 @@ define([
       this.run = lang.hitch(this, this.run);
       this.createOrg = lang.hitch(this, this.createOrg);
       this.createMap = lang.hitch(this, this.createMap);
+      this.createSearch = lang.hitch(this, this.createSearch);
       this.queryGroup = lang.hitch(this, this.queryGroup);
       this.watchLayerUpdate = lang.hitch(this, this.watchLayerUpdate);
       this.checkUpdateStatus = lang.hitch(this, this.checkUpdateStatus);
@@ -186,6 +189,9 @@ define([
               document.getElementById('tools-wrapper').style.display = 'inline-block';
             })
 
+            // Hook up the search widget.
+            this.createSearch();
+
           } else {
             console.log('No point layer found for', pointLayerId);
           }
@@ -216,6 +222,14 @@ define([
           console.log('errory querying groups', error);
         }
       );
+    },
+
+    createSearch: function() {
+      this.searchWidget = new Search({
+        map: this.map,
+        showInfoWindowOnSelect: false
+      }, this.search);
+      this.searchWidget.startup();
     },
 
     watchLayerUpdate: function(id) {
