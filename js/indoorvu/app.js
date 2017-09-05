@@ -28,6 +28,7 @@ define([
       this.finishedUpdating = {};
       // All photos for the building.
       this.photoLookup = { all: [] };
+      this.gettingPhotoInfo = false;
       var protocol = window.location.protocol;
       
       this.urlParameters = urlUtils.urlToObject(window.document.location.href).query;
@@ -77,7 +78,6 @@ define([
         esriId.destroyCredentials();
         window.location.reload();
       });
-      console.log('end of ctor');
     },
 
     createOrg: function(portalUrl) {
@@ -205,6 +205,7 @@ define([
 
     queryGroup: function(user, start) {
       console.log('querying a group', this.orgBase, this.photoGroupId);
+      this.gettingPhotoInfo = true;
       esriRequest({
         url: window.location.protocol + '//' + this.orgBase + '/sharing/rest/search',
         content: {
@@ -261,6 +262,9 @@ define([
           break;
         }
       }
+      if ( this.gettingPhotoInfo ) {
+        allFinished = false;
+      }
       return allFinished;
     },
 
@@ -275,6 +279,12 @@ define([
         }, this);
         this.photoLookup.token = token;
         console.log('got photos', this.photoLookup)
+        this.gettingPhotoInfo = false;
+        if ( this.checkUpdateStatus() ) {
+          this.loading.remove();
+          // Give the pano viewer a photo point.
+          this.pano.update(this.pointLayer.graphics[0]);
+        }
       }
     },
 
