@@ -69,7 +69,7 @@ define([
         popup: false,
         portalUrl: window.location.protocol + '//' + this.orgBase
       });
-      esriId.registerOAuthInfos([info]);
+      // esriId.registerOAuthInfos([info]);
       this.createOrg(info.portalUrl);
 
       // Wire up sign out button.
@@ -77,14 +77,15 @@ define([
         esriId.destroyCredentials();
         window.location.reload();
       });
+      console.log('end of ctor');
     },
 
     createOrg: function(portalUrl) {
-      org = new Portal.Portal(portalUrl);
-      org.signIn().then(
-        lang.hitch(this, function(portalUser) {
+      // org = new Portal.Portal(portalUrl);
+      // org.signIn().then(
+        // lang.hitch(this, function(portalUser) {
           // console.log('Signed in to the portal as:  ', portalUser);
-          this.user = portalUser.username;
+          // this.user = portalUser.username;
           document.getElementById('sign-out').style.display = 'block';
 
           // Get config object from arcgis.com.
@@ -104,11 +105,11 @@ define([
               console.log('config from URL ERROR', error);
             }
           );
-        }),
-        function(error){
-          console.log('Error occurred while signing in: ', error);
-        }
-      );
+        // }),
+        // function(error){
+        //   console.log('Error occurred while signing in: ', error);
+        // }
+      // );
     },
 
     start: function() {
@@ -216,7 +217,11 @@ define([
         }
       }).then(
         lang.hitch(this, function(response) {
-          this.handlePhotos(this.user, esriId.credentials[0].token, response);
+          var token = '';
+          if ( esriId.credentials.length && esriId.credentials[0].token ) {
+            token = esriId.credentials[0].token;
+          }
+          this.handlePhotos(this.user, token, response);
         }), 
         function(error) {
           console.log('errory querying groups', error);

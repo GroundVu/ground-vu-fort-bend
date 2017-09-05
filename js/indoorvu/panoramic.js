@@ -102,10 +102,7 @@ define([
       });
       // Add a graphic showing heading.
       this.graphicsLayer.clear();
-      var angle = attributes.Heading_Deg1 || attributes.Heading_De || attributes.Heading_Deg_ || attributes.alt;
-      // In testing, cones was consistently off by 45 degrees.
-      // Subtract 45 to get it right.
-      angle = angle - 45;
+      var angle = attributes.Heading_Deg1 || attributes.Heading_De || attributes.Heading_Deg_ || attributes.orientation;
       var offsets = this.calculateSymbolOffsets(270 - angle);
       this.heading.setAngle(angle);
       this.heading.setOffset(offsets[0], offsets[1]);
